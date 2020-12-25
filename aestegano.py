@@ -10,11 +10,20 @@ import pathlib
 
 def init(dialog, self):
     self.source = ''
-    self.filter = 'Images (*.png *.jpg *.PNG *.JPG *.jpeg *.JPEG);;All files(*)'
-    self.encrypt_pushButton.clicked.connect(lambda: encrypt(dialog, self))
-    self.decrypt_pushButton.clicked.connect(lambda: decrypt(dialog, self))
-    self.about_pushButton.clicked.connect(lambda: about(dialog, self))
-    self.source_toolButton.clicked.connect(lambda: get_source(dialog, self))
+    self.filter = ("Images (*.png *.jpg *.PNG *.JPG *.jpeg *.JPEG)"
+                   ";;All files(*)")
+    self.encrypt_pushButton.clicked.connect(
+        lambda: encrypt(dialog, self)
+        )
+    self.decrypt_pushButton.clicked.connect(
+        lambda: decrypt(dialog, self)
+        )
+    self.about_pushButton.clicked.connect(
+        lambda: about(dialog, self)
+        )
+    self.source_toolButton.clicked.connect(
+        lambda: get_source(dialog, self)
+        )
     self.exit_pushButton.clicked.connect(dialog.close)
 
 
@@ -74,21 +83,21 @@ def about(dialog, self):
 
 def get_source(dialog, self):
     self.source = QtWidgets.QFileDialog.getOpenFileName(
-                                                dialog, 
-                                                caption='Open Image',
-                                                filter=self.filter,
-                                                )[0].strip()
+        dialog, 
+        caption='Open Image',
+        filter=self.filter,
+        )[0].strip()
     if self.source != '':
         self.source_lineEdit.setText(self.source)
 
 
 def get_destination(dialog, self):
     destination = QtWidgets.QFileDialog.getSaveFileName(
-                                                dialog, 
-                                                caption='Save...',
-                                                directory='newfile',
-                                                filter=self.filter,
-                                                )[0].strip()
+        dialog, 
+        caption='Save...',
+        directory='newfile',
+        filter=self.filter,
+        )[0].strip()
     if destination != '':
         suffix = pathlib.Path(destination).suffix
         if suffix == '':
