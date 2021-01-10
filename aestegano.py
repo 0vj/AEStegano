@@ -83,7 +83,7 @@ def about(dialog, self):
 
 def get_source(dialog, self):
     self.source = QtWidgets.QFileDialog.getOpenFileName(
-        dialog, 
+        dialog,
         caption='Open Image',
         filter=self.filter,
         )[0].strip()
@@ -93,7 +93,7 @@ def get_source(dialog, self):
 
 def get_destination(dialog, self):
     destination = QtWidgets.QFileDialog.getSaveFileName(
-        dialog, 
+        dialog,
         caption='Save...',
         directory='newfile',
         filter=self.filter,
